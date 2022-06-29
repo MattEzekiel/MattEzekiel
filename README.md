@@ -14,7 +14,7 @@ Hi there 👋
 
 <hr>
 
-## 💻 Knowlage
+## 💻 Knowlage 💻
 <div class="badges">
   <img src="https://img.shields.io/badge/HTML5-orange?logo=html5&logoColor=white&style=for-the-badge" alt="HTML5">
   <img src="https://img.shields.io/badge/css3-blue?logo=css3&logoColor=white&style=for-the-badge" alt="css">
@@ -23,19 +23,24 @@ Hi there 👋
   <img src="https://img.shields.io/badge/mysql-dodgerblue?logo=mySQL&logoColor=white&style=for-the-badge" alt="MySQL">
 </div>
 
-### 🧰 Frameworks / Libreries
+&nbsp;
+&nbsp;
+
+### 🧰 Frameworks / Libreries 🧰
 <div class="badges">
   <img src="https://img.shields.io/badge/wordpress-dodgerblue?logo=wordpress&logoColor=white&style=for-the-badge" alt="MySQL">
   <img src="https://img.shields.io/badge/jquery-blue?logo=jquery&logoColor=white&style=for-the-badge" alt="jquery">
-  <img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge" alt="react">
- 
+  <img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge" alt="react"> 
   <img src="https://img.shields.io/badge/bootstrap-indigo?logo=bootstrap&logoColor=white&style=for-the-badge" alt="bootstrap">
   <img src="https://img.shields.io/badge/tailwindcss-deepskyblue?logo=tailwindcss&logoColor=white&style=for-the-badge" alt="tailwindcss">
   <img src="https://img.shields.io/badge/laravel-orangered?logo=laravel&logoColor=white&style=for-the-badge" alt="laravel">
   <img src="https://img.shields.io/badge/-VueJs-4fc08d?logo=vuedotjs&logoColor=white&style=for-the-badge" alt="vue js">
 </div>
 
-### 🔧 Others
+&nbsp;
+&nbsp;
+
+### 🔧 Others 🔧
 <div class="badges">
   <img src="http://img.shields.io/badge/git-brown?style=for-the-badge&logo=git&logoColor=white" alt="git">
   <img src="http://img.shields.io/badge/github-black?style=for-the-badge&logo=github&logoColor=white" alt="github">
@@ -63,7 +68,10 @@ Hi there 👋
   <img src="http://img.shields.io/badge/adobexd-darkmagenta?style=for-the-badge&logo=adobexd&logoColor=white" alt="Adobe XD">
 </div>
 
-### ⚙️ IDE
+&nbsp;
+&nbsp;
+
+### ⚙️ IDE ⚙️
 <div class="badges">
   <img src="https://img.shields.io/badge/WebStorm-000000?style=for-the-badge&logo=WebStorm&logoColor=white" alt="webstorm">
   <img src="http://img.shields.io/badge/-PHPStorm-181717?style=for-the-badge&logo=phpstorm&logoColor=white" alt="phpstorm">
