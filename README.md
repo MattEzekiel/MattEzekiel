@@ -81,7 +81,7 @@ Hi there 👋
 &nbsp;
 &nbsp;
 
-### :fire: My Stats:
+### :fire: My Stats :fire:
 <div style="display: flex; justify-content: center; align-items: center;">
   <img src="http://github-readme-streak-stats.herokuapp.com?user=MattEzekiel&theme=dark&background=000000" alt="stats">
   <img src="https://github-readme-stats.vercel.app/api?username=MattEzekiel&show_icons=true&theme=midnight-purple" alt="stats">
