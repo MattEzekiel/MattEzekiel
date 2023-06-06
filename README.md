@@ -28,7 +28,6 @@ Hi there 👋
 
 ### 🧰 Frameworks / Libreries 🧰
 <div class="badges">
-  <img src="https://img.shields.io/badge/wordpress-dodgerblue?logo=wordpress&logoColor=white&style=for-the-badge" alt="MySQL">
   <img src="https://img.shields.io/badge/jquery-blue?logo=jquery&logoColor=white&style=for-the-badge" alt="jquery">
   <img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge" alt="react"> 
   <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="next"> 
@@ -36,6 +35,17 @@ Hi there 👋
   <img src="https://img.shields.io/badge/tailwindcss-deepskyblue?logo=tailwindcss&logoColor=white&style=for-the-badge" alt="tailwindcss">
   <img src="https://img.shields.io/badge/laravel-orangered?logo=laravel&logoColor=white&style=for-the-badge" alt="laravel">
   <img src="https://img.shields.io/badge/-VueJs-4fc08d?logo=vuedotjs&logoColor=white&style=for-the-badge" alt="vue js">
+</div>
+
+&nbsp;
+&nbsp;
+
+### 🔑 Database 🔑
+<div class="badges">
+  <img src="https://img.shields.io/badge/wordpress-dodgerblue?logo=wordpress&logoColor=white&style=for-the-badge" alt="MySQL">
+  <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white" alt="MariaDB">
+  <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
+  <img src="https://img.shields.io/badge/wordpress-dodgerblue?logo=wordpress&logoColor=white&style=for-the-badge" alt="MySQL">
 </div>
 
 &nbsp;
@@ -49,12 +59,24 @@ Hi there 👋
 </div>
 
 &nbsp;
+&nbsp;
 
+### ☁ Cloud ☁
 <div class="badges">
   <img src="http://img.shields.io/badge/firestore-sandybrown?style=for-the-badge&logo=firestore&logoColor=white" alt="firestore">
   <img src="http://img.shields.io/badge/aws-slategrey?style=for-the-badge&logo=aws&logoColor=white" alt="aws">
+  <img src="https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="Netlify">
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel">
 </div>
 
+### 📊 Analytics 📊
+
+<div class="badges">
+  <img src="https://img.shields.io/badge/Google%20Analytics-E37400?style=for-the-badge&logo=google%20analytics&logoColor=white" alt="Google Analytics">
+  <img src="https://img.shields.io/badge/hotjar-FD3A5C?style=for-the-badge&logo=hotjar&logoColor=white" alt="hotjar">
+</div>
+
+&nbsp;
 &nbsp;
 
 <div class="badges">
