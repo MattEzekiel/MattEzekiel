@@ -31,6 +31,7 @@ Hi there 👋
   <img src="https://img.shields.io/badge/wordpress-dodgerblue?logo=wordpress&logoColor=white&style=for-the-badge" alt="MySQL">
   <img src="https://img.shields.io/badge/jquery-blue?logo=jquery&logoColor=white&style=for-the-badge" alt="jquery">
   <img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge" alt="react"> 
+  <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="next"> 
   <img src="https://img.shields.io/badge/bootstrap-indigo?logo=bootstrap&logoColor=white&style=for-the-badge" alt="bootstrap">
   <img src="https://img.shields.io/badge/tailwindcss-deepskyblue?logo=tailwindcss&logoColor=white&style=for-the-badge" alt="tailwindcss">
   <img src="https://img.shields.io/badge/laravel-orangered?logo=laravel&logoColor=white&style=for-the-badge" alt="laravel">
