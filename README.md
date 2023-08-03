@@ -20,6 +20,7 @@ Hi there 👋
   <img src="https://img.shields.io/badge/HTML5-orange?logo=html5&logoColor=white&style=for-the-badge" alt="HTML5">
   <img src="https://img.shields.io/badge/css3-blue?logo=css3&logoColor=white&style=for-the-badge" alt="css">
   <img src="https://img.shields.io/badge/javascript-yellow?logo=javascript&logoColor=white&style=for-the-badge" alt="javascript">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="typescript">
   <img src="https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white" alt="JSON">
   <img src="https://img.shields.io/badge/PHP-cornflowerblue?logo=php&logoColor=white&style=for-the-badge" alt="php">
   <img src="https://img.shields.io/badge/mysql-dodgerblue?logo=mySQL&logoColor=white&style=for-the-badge" alt="SQL">
@@ -36,10 +37,10 @@ Hi there 👋
   <img src="https://img.shields.io/badge/-VueJs-4fc08d?logo=vuedotjs&logoColor=white&style=for-the-badge" alt="vue js">
   <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
   <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express js">
-    <img src="https://img.shields.io/badge/jquery-blue?logo=jquery&logoColor=white&style=for-the-badge" alt="jquery">
+  <img src="https://img.shields.io/badge/jquery-blue?logo=jquery&logoColor=white&style=for-the-badge" alt="jquery">
   <img src="https://img.shields.io/badge/GraphQl-E10098?style=for-the-badge&logo=graphql&logoColor=white" alt="GraphQL">
   <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" alt="Prisma">
-<img src="https://img.shields.io/badge/bootstrap-indigo?logo=bootstrap&logoColor=white&style=for-the-badge" alt="bootstrap">
+  <img src="https://img.shields.io/badge/bootstrap-indigo?logo=bootstrap&logoColor=white&style=for-the-badge" alt="bootstrap">
   <img src="https://img.shields.io/badge/tailwindcss-deepskyblue?logo=tailwindcss&logoColor=white&style=for-the-badge" alt="tailwindcss">
   <img src="https://img.shields.io/badge/Font_Awesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white" alt="FontAwesome">
   <img src="https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white" alt="MaterialUI">
@@ -58,7 +59,7 @@ Hi there 👋
   <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white" alt="MariaDB">
   <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
   <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
-    <img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black" alt="firestore">
+  <img src="https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black" alt="firestore">
 </div>
 
 &nbsp;
@@ -82,7 +83,7 @@ Hi there 👋
 
 ### 👨‍💻 Repositories 👨‍💻
 <div class="badge">
-    <img src="http://img.shields.io/badge/git-brown?style=for-the-badge&logo=git&logoColor=white" alt="git">
+  <img src="http://img.shields.io/badge/git-brown?style=for-the-badge&logo=git&logoColor=white" alt="git">
   <img src="http://img.shields.io/badge/github-black?style=for-the-badge&logo=github&logoColor=white" alt="github">
   <img src="http://img.shields.io/badge/gitlab-lightsalmon?style=for-the-badge&logo=gitlab&logoColor=white" alt="gitlab">
 </div>
@@ -124,7 +125,7 @@ Hi there 👋
     <img src="https://img.shields.io/badge/Laragon-0E83CD?style=for-the-badge&logo=Laragon&logoColor=white" alt="Laragon">
     <img src="https://img.shields.io/badge/Xampp-F37623?style=for-the-badge&logo=xampp&logoColor=white" alt="XAMPP">
     <img src="https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=Composer&logoColor=white" alt="Composer">
-  <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="NPM">
+    <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white" alt="NPM">
     <img src="https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white" alt="Yarn">
     <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite">
 </div>
