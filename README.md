@@ -6,7 +6,7 @@ Hi there 👋
 
 ## 👨‍💻 About me:
 
-<p>I am a Full Stack Developer from Argentina <img src="https://raw.githubusercontent.com/madebybowtie/FlagKit/master/Assets/PNG/AR%402x.png" alt="Argentina" width="21" height="15"> </p>
+<p>I am a developer engineering from Argentina <img src="https://raw.githubusercontent.com/madebybowtie/FlagKit/master/Assets/PNG/AR%402x.png" alt="Argentina" width="21" height="15"> </p>
 
 - :telescope: I’m working as a Full Stack developer building web applications.
 
