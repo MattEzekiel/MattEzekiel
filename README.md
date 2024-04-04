@@ -152,8 +152,10 @@
 &nbsp;
 &nbsp;
 &nbsp;
-### 🏆 My Trophies 🏆
+
 <div align="center">
+
+  ### 🏆 My Trophies 🏆
   
   [![trophy](https://github-profile-trophy.vercel.app/?username=MattEzekiel&row=3&column=3&theme=juicyfresh)](https://github.com/MattEzekiel/github-profile-trophy)
   
@@ -163,8 +165,9 @@
 &nbsp;
 &nbsp;
 
-### 🌟 My Stats 🌟
 <div align="center">
+
+  ### 🌟 My Stats 🌟
   
   <img src="http://github-readme-streak-stats.herokuapp.com?user=MattEzekiel&theme=dark&background=000000" alt="stats">
   <img src="https://github-readme-stats.vercel.app/api?username=MattEzekiel&show_icons=true&theme=midnight-purple" alt="stats">
