@@ -164,8 +164,10 @@
 &nbsp;
 
 ### 🌟 My Stats 🌟
-<div style="display: flex; justify-content: center; align-items: center;">
+<div align="center">
+  
   <img src="http://github-readme-streak-stats.herokuapp.com?user=MattEzekiel&theme=dark&background=000000" alt="stats">
   <img src="https://github-readme-stats.vercel.app/api?username=MattEzekiel&show_icons=true&theme=midnight-purple" alt="stats">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MattEzekiel&layout=compact&theme=vision-friendly-dark" alt="stats">  
+  
 </div>
