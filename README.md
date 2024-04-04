@@ -152,6 +152,16 @@
 &nbsp;
 &nbsp;
 &nbsp;
+### 🏆 My Trophies 🏆
+<div align="center">
+  
+  [![trophy](https://github-profile-trophy.vercel.app/?username=MattEzekiel&row=3&column=3&theme=juicyfresh)](https://github.com/MattEzekiel/github-profile-trophy)
+  
+</div>
+
+&nbsp;
+&nbsp;
+&nbsp;
 
 ### 🌟 My Stats 🌟
 <div style="display: flex; justify-content: center; align-items: center;">
