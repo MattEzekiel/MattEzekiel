@@ -10,7 +10,9 @@
 
 <p>I am a Full Stack Developer from Argentina <img src="https://raw.githubusercontent.com/madebybowtie/FlagKit/master/Assets/PNG/AR%402x.png" alt="Argentina" width="21" height="15"> </p>
 
-- :telescope: as a Full Stack developer, my focus on create web applications are in performance, UX and SEO.
+- :telescope: as a Full Stack developer/engineer, my focus on create web applications are in performance, UX and SEO.
+
+- 🧱 Working as a freelancer I develop skills that put me in a rol of Software Architecture
 
 - :mailbox:How to reach me: [![Linkedin Badge](https://img.shields.io/badge/-matiasbubello-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/matias-bubello/) 
 - <a href="https://www.behance.net/mattbubello" target="_blank"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white" alt="behance" /></a>
