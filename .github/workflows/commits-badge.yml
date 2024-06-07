@@ -18,8 +18,9 @@ jobs:
         uses: octokit/request-action@v2.x
         with:
           route: GET /repos/:owner/:repo/commits
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
+          mediaType: {}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Count total commits
         id: count-commits
@@ -37,5 +38,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add commit-badge.json
-          git commit -m "Update commits badge"
+          git commit -m "Update commit badge"
           git push
