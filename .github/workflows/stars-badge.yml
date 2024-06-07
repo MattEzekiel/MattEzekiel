@@ -1,0 +1,56 @@
+name: Update Star Badge
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  star-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get repository list
+        id: list-repos
+        run: |
+          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/MattEzekiel/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
+          echo "REPOS=$REPOS"
+          REPOS_LIST=$(echo "$REPOS" | tr '\n' ' ')
+          echo "REPOS_LIST=$REPOS_LIST" >> $GITHUB_ENV
+
+      - name: Loop through repositories
+        run: |
+          total_stars=0
+          for repo in $REPOS_LIST; do
+            echo "Fetching stars for $repo"
+            stars=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo" | jq '.stargazers_count')
+            echo "Stars: $stars"
+            total_stars=$((total_stars + stars))
+          done
+          echo "TOTAL_STARS=$total_stars" >> $GITHUB_ENV
+
+      - name: Generate star badge
+        run: |
+          TOTAL_STARS=$(echo "${{ env.TOTAL_STARS }}")
+          echo "Stars: $TOTAL_STARS"
+          echo '{"schemaVersion": 1, "label": "stars", "message": "'"$TOTAL_STARS"' total", "color": "yellow"}' > star-badge.json
+
+      - name: Upload badge
+        uses: actions/upload-artifact@v3
+        with:
+          name: star-badge
+          path: star-badge.json
+
+      - name: Commit and push badge update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add star-badge.json
+          git commit -m "Update star badge"
+          git push
