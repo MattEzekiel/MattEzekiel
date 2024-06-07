@@ -16,14 +16,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Update status to online
+      - name: Determine status
         run: |
-          echo '{"schemaVersion": 1, "label": "status", "message": "online", "color": "brightgreen"}' > status.json
+          if [ -f status.json ] && grep -q '"status": "online"' status.json; then
+            echo '{"schemaVersion": 1, "label": "status", "message": "Offline", "color": "red"}' > status.json
+          else
+            echo '{"schemaVersion": 1, "label": "status", "message": "Online", "color": "brightgreen"}' > status.json
+          fi
 
       - name: Commit and push status update
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add status.json
-          git commit -m "Update status to online"
+          git commit -m "Update status"
           git push
