@@ -1,0 +1,25 @@
+name: Update Status Badge
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Update status to online
+        run: |
+          echo '{"status": "online"}' > status.json
+
+      - name: Commit and push status update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add status.json
+          git commit -m "Update status to online"
+          git push
