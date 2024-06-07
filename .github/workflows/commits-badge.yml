@@ -37,5 +37,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add commit-badge.json
-          git commit -m "Update commit badge"
+          git commit -m "Update commits badge"
           git push
