@@ -1,0 +1,31 @@
+name: Update Commit Badge
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  update-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate commit badge
+        run: |
+          YEAR=$(date +%Y)
+          COMMITS=$(git log --pretty=oneline --since="$YEAR-01-01" | wc -l)
+          echo '{"schemaVersion": 1, "label": "commits", "message": "'"$COMMITS"' commits this year", "color": "blue"}' > commit-badge.json
+
+      - name: Commit and push commit badge update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add commit-badge.json
+          git commit -m "Update commit badge"
+          git push
