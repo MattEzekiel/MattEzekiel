@@ -5,8 +5,11 @@
 </div>
 
 # Hi there 👋 I am Matías (Matt) Bubello
-![Stars](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Fstar-badge.json&query=message&label=Stars&color=yellow)
 ![Commits](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Fcommit-badge.json&query=message&label=Commits&color=blue)
+![Stars](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Fstar-badge.json&query=message&label=Stars&color=yellow)
+![Forks](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Ffork-badge.json&query=message&label=Forks&color=purple)
+![Watcher](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Fwatcher-badge.json&query=message&label=Watchers&color=dark)
+![Open Issues](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Fopen-issues-badge.json&query=message&label=Watchers&color=red)
 
 
 
