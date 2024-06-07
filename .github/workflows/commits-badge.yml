@@ -18,7 +18,7 @@ jobs:
         uses: octokit/request-action@v2.x
         with:
           route: GET /user/repos
-          mediaType: {}
+          mediaType: application/vnd.github.v3+json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
