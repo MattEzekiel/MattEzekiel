@@ -6,7 +6,7 @@
 
 # Hi there 👋 I am Matías (Matt) Bubello
 ![Status](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Fstatus.json&query=%24.message&label=Status&color=%24.color)
-![Commits](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Fcommit-badge.json&query=message&label=Commits&color=%24.color)
+![Commits](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Fcommit-badge.json&query=message&label=Commits&color=blue)
 
 
 
