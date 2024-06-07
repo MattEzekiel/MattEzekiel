@@ -5,6 +5,9 @@
 </div>
 
 # Hi there 👋 I am Matías (Matt) Bubello
+![status](https://nocache.advaith.workers.dev?url=https://img.shields.io/endpoint?url=https://dev.discordprofiles.me/api/badge/status/337051424477151235?simple=true)
+![playing](https://nocache.advaith.workers.dev?url=https://img.shields.io/endpoint?url=https://dev.discordprofiles.me/api/badge/playing/337051424477151235)
+[![spotify](https://nocache.advaith.workers.dev?url=https://img.shields.io/endpoint?url=https://dev.discordprofiles.me/api/badge/spotify/337051424477151235)](https://dev.discordprofiles.me/openspotify/337051424477151235)
 
 ## 👨‍💻 About me:
 
