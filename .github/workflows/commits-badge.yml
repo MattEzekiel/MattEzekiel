@@ -13,20 +13,23 @@ jobs:
   update-badge:
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch all commits
-        id: fetch-commits
+      - name: Get repository list
+        id: list-repos
         uses: octokit/request-action@v2.x
         with:
-          route: GET /repos/:owner/:repo/commits
+          route: GET /user/repos
           mediaType: {}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Count total commits
-        id: count-commits
+      - name: Loop through repositories
         run: |
-          TOTAL_COMMITS=$(jq 'length' <<< "${{ steps.fetch-commits.outputs.data }}")
-          echo "::set-output name=total_commits::$TOTAL_COMMITS"
+          for repo in $(echo "${{ steps.list-repos.outputs.data }}" | jq -r '.[] | select(.fork == false) | .full_name'); do
+            echo "Fetching commits for $repo"
+            commits=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$repo/commits" | jq 'length')
+            total_commits=$((total_commits + commits))
+          done
+          echo "::set-output name=total_commits::$total_commits"
 
       - name: Generate commit badge
         run: |
