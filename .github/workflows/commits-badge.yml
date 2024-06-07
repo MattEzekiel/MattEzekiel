@@ -39,7 +39,7 @@ jobs:
         run: |
           TOTAL_COMMITS=$(echo "${{ env.TOTAL_COMMITS }}")
           echo "Commits: $TOTAL_COMMITS"
-          echo '{"schemaVersion": 1, "label": "commits", "message": "'"$TOTAL_COMMITS"'", "color": "blue"}' > commit-badge.json
+          echo '{"schemaVersion": 1, "label": "commits", "message": "'"$TOTAL_COMMITS"' recently", "color": "blue"}' > commit-badge.json
 
       - name: Upload badge
         uses: actions/upload-artifact@v3
