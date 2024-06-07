@@ -26,7 +26,7 @@ jobs:
           total_commits=0
           for repo in $REPOS_LIST; do
             echo "Fetching commits for $repo"
-            commits=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/MattEzekiel/$repo/commits" | jq 'length')
+            commits=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo/commits" | jq 'length')
             echo "Commits: $commits"
             total_commits=$((total_commits + commits))
           done
