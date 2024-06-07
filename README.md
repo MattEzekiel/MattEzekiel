@@ -5,9 +5,9 @@
 </div>
 
 # Hi there 👋 I am Matías (Matt) Bubello
-![status](https://nocache.advaith.workers.dev?url=https://img.shields.io/endpoint?url=https://dev.discordprofiles.me/api/badge/status/337051424477151235?simple=true)
-![playing](https://nocache.advaith.workers.dev?url=https://img.shields.io/endpoint?url=https://dev.discordprofiles.me/api/badge/playing/337051424477151235)
-[![spotify](https://nocache.advaith.workers.dev?url=https://img.shields.io/endpoint?url=https://dev.discordprofiles.me/api/badge/spotify/337051424477151235)](https://dev.discordprofiles.me/openspotify/337051424477151235)
+// ![status](https://nocache.advaith.workers.dev?url=https://img.shields.io/endpoint?url=https://dev.discordprofiles.me/api/badge/status/337051424477151235?simple=true)
+// ![playing](https://nocache.advaith.workers.dev?url=https://img.shields.io/endpoint?url=https://dev.discordprofiles.me/api/badge/playing/337051424477151235)
+// [![spotify](https://nocache.advaith.workers.dev?url=https://img.shields.io/endpoint?url=https://dev.discordprofiles.me/api/badge/spotify/337051424477151235)](https://dev.discordprofiles.me/openspotify/337051424477151235)
 
 ## 👨‍💻 About me:
 
@@ -177,5 +177,11 @@
   <img src="http://github-readme-streak-stats.herokuapp.com?user=MattEzekiel&theme=dark&background=000000" alt="stats">
   <img src="https://github-readme-stats.vercel.app/api?username=MattEzekiel&show_icons=true&theme=midnight-purple" alt="stats">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MattEzekiel&layout=compact&theme=vision-friendly-dark" alt="stats">  
+  
+</div>
+
+<div align="center">
+
+[![spotify-github-profile](https://spotify-github-profile.vercel.app/api/view?uid=11120684304&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=false)](https://github.com/kittinan/spotify-github-profile)
   
 </div>
