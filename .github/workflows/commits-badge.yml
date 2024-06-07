@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Get repository list
         id: list-repos
         run: |
@@ -37,8 +37,9 @@ jobs:
 
       - name: Generate commit badge
         run: |
+          TOTAL_COMMITS=$(echo "${{ env.TOTAL_COMMITS }}")
           echo "Commits: $TOTAL_COMMITS"
-          echo '{"schemaVersion": 1, "label": "commits", "message": $TOTAL_COMMITS "commits total", "color": "blue"}' > commit-badge.json
+          echo '{"schemaVersion": 1, "label": "commits", "message": "'"$TOTAL_COMMITS"' commits total", "color": "blue"}' > commit-badge.json
 
       - name: Upload badge
         uses: actions/upload-artifact@v3
