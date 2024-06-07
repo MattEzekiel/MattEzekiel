@@ -17,21 +17,20 @@ jobs:
         id: list-repos
         run: |
           REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/MattEzekiel/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
-          echo "::set-output name=repos::$REPOS"
+          echo "REPOS=$REPOS" >> $GITHUB_ENV
 
       - name: Loop through repositories
         run: |
           total_commits=0
-          for repo in ${{ steps.list-repos.outputs.repos }}; do
+          for repo in $REPOS; do
             echo "Fetching commits for $repo"
             commits=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo/commits" | jq 'length')
             total_commits=$((total_commits + commits))
           done
-          echo "::set-output name=total_commits::$total_commits"
+          echo "TOTAL_COMMITS=$total_commits" >> $GITHUB_ENV
 
       - name: Generate commit badge
         run: |
-          TOTAL_COMMITS="${{ steps.commit-badge.outputs.total_commits }}"
           echo '{"schemaVersion": 1, "label": "commits", "message": "'"$TOTAL_COMMITS"' commits total", "color": "blue"}' > commit-badge.json
 
       - name: Commit and push commit badge update
