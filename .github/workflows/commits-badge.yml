@@ -16,7 +16,7 @@ jobs:
       - name: Get repository list
         id: list-repos
         run: |
-          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/MattEzekiel/repos?type=all&visibility=all" | jq -r '.[] | select(.fork == false) | .full_name')
+          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/MattEzekiel/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
           echo "REPOS=$REPOS"
           REPOS_LIST=$(echo "$REPOS" | tr '\n' ' ')
           echo "REPOS_LIST=$REPOS_LIST" >> $GITHUB_ENV
@@ -34,16 +34,12 @@ jobs:
 
       - name: Generate commit badge
         run: |
-          TOTAL_COMMITS="${{ env.TOTAL_COMMITS }}"
-          echo '{"schemaVersion": 1, "label": "commits", "message": "'"$TOTAL_COMMITS"' commits total", "color": "blue"}' > commit-badge.json
-
-      - name: Configure git
-        run: |
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
+          echo '{"schemaVersion": 1, "label": "commits", "message": "$TOTAL_COMMITS commits total", "color": "blue"}' > commit-badge.json
 
       - name: Commit and push commit badge update
         run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add commit-badge.json
-          git commit -m "Update commit badge" || echo "No changes to commit"
+          git commit -m "Update commit badge"
           git push
