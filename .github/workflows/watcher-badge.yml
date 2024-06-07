@@ -1,0 +1,56 @@
+name: Update Watcher Badge
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  watcher-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get repository list
+        id: list-repos
+        run: |
+          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/MattEzekiel/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
+          echo "REPOS=$REPOS"
+          REPOS_LIST=$(echo "$REPOS" | tr '\n' ' ')
+          echo "REPOS_LIST=$REPOS_LIST" >> $GITHUB_ENV
+
+      - name: Loop through repositories
+        run: |
+          total_watchers=0
+          for repo in $REPOS_LIST; do
+            echo "Fetching watchers for $repo"
+            watchers=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo" | jq '.subscribers_count')
+            echo "Watchers: $watchers"
+            total_watchers=$((total_watchers + watchers))
+          done
+          echo "TOTAL_WATCHERS=$total_watchers" >> $GITHUB_ENV
+
+      - name: Generate watcher badge
+        run: |
+          TOTAL_WATCHERS=$(echo "${{ env.TOTAL_WATCHERS }}")
+          echo "Watchers: $TOTAL_WATCHERS"
+          echo '{"schemaVersion": 1, "label": "watchers", "message": "'"$TOTAL_WATCHERS"' total", "color": "orange"}' > watcher-badge.json
+
+      - name: Upload badge
+        uses: actions/upload-artifact@v3
+        with:
+          name: watcher-badge
+          path: watcher-badge.json
+
+      - name: Commit and push badge update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add watcher-badge.json
+          git commit -m "Update watcher badge"
+          git push
