@@ -1,0 +1,56 @@
+name: Update Open Issues Badge
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  open-issues-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get repository list
+        id: list-repos
+        run: |
+          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/MattEzekiel/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
+          echo "REPOS=$REPOS"
+          REPOS_LIST=$(echo "$REPOS" | tr '\n' ' ')
+          echo "REPOS_LIST=$REPOS_LIST" >> $GITHUB_ENV
+
+      - name: Loop through repositories
+        run: |
+          total_open_issues=0
+          for repo in $REPOS_LIST; do
+            echo "Fetching open issues for $repo"
+            open_issues=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo" | jq '.open_issues_count')
+            echo "Open Issues: $open_issues"
+            total_open_issues=$((total_open_issues + open_issues))
+          done
+          echo "TOTAL_OPEN_ISSUES=$total_open_issues" >> $GITHUB_ENV
+
+      - name: Generate open issues badge
+        run: |
+          TOTAL_OPEN_ISSUES=$(echo "${{ env.TOTAL_OPEN_ISSUES }}")
+          echo "Open Issues: $TOTAL_OPEN_ISSUES"
+          echo '{"schemaVersion": 1, "label": "open issues", "message": "'"$TOTAL_OPEN_ISSUES"' total", "color": "red"}' > open-issues-badge.json
+
+      - name: Upload badge
+        uses: actions/upload-artifact@v3
+        with:
+          name: open-issues-badge
+          path: open-issues-badge.json
+
+      - name: Commit and push badge update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add open-issues-badge.json
+          git commit -m "Update open issues badge"
+          git push
