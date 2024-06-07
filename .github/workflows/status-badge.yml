@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-badge:
+  status-badge:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

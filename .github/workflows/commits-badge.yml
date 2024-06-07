@@ -10,24 +10,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  update-badge:
+  commit-badge:
     runs-on: ubuntu-latest
     steps:
       - name: Get repository list
         id: list-repos
-        uses: octokit/request-action@v2.x
-        with:
-          route: GET /user/repos
-          mediaType: application/vnd.github.v3+json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/user/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
+          echo "::set-output name=repos::$REPOS"
 
       - name: Loop through repositories
         run: |
           total_commits=0
-          for repo in $(echo "${{ steps.list-repos.outputs.data }}" | jq -r '.[] | select(.fork == false) | .full_name'); do
+          for repo in ${{ steps.list-repos.outputs.repos }}; do
             echo "Fetching commits for $repo"
-            commits=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$repo/commits" | jq 'length')
+            commits=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo/commits" | jq 'length')
             total_commits=$((total_commits + commits))
           done
           echo "::set-output name=total_commits::$total_commits"
