@@ -1,0 +1,56 @@
+name: Update Fork Badge
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  fork-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Get repository list
+        id: list-repos
+        run: |
+          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/MattEzekiel/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
+          echo "REPOS=$REPOS"
+          REPOS_LIST=$(echo "$REPOS" | tr '\n' ' ')
+          echo "REPOS_LIST=$REPOS_LIST" >> $GITHUB_ENV
+
+      - name: Loop through repositories
+        run: |
+          total_forks=0
+          for repo in $REPOS_LIST; do
+            echo "Fetching forks for $repo"
+            forks=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo" | jq '.forks_count')
+            echo "Forks: $forks"
+            total_forks=$((total_forks + forks))
+          done
+          echo "TOTAL_FORKS=$total_forks" >> $GITHUB_ENV
+
+      - name: Generate fork badge
+        run: |
+          TOTAL_FORKS=$(echo "${{ env.TOTAL_FORKS }}")
+          echo "Forks: $TOTAL_FORKS"
+          echo '{"schemaVersion": 1, "label": "forks", "message": "'"$TOTAL_FORKS"' total", "color": "green"}' > fork-badge.json
+
+      - name: Upload badge
+        uses: actions/upload-artifact@v3
+        with:
+          name: fork-badge
+          path: fork-badge.json
+
+      - name: Commit and push badge update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add fork-badge.json
+          git commit -m "Update fork badge"
+          git push
