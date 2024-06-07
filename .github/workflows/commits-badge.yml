@@ -34,7 +34,9 @@ jobs:
 
       - name: Generate commit badge
         run: |
-          echo '{"schemaVersion": 1, "label": "commits", "message": "$TOTAL_COMMITS commits total", "color": "blue"}' > commit-badge.json
+          echo "Commits: $TOTAL_COMMITS"
+          echo '{"schemaVersion": 1, "label": "commits", "message": $TOTAL_COMMITS "commits total", "color": "blue"}' > commit-badge.json
+          done
 
       - name: Commit and push commit badge update
         run: |
