@@ -18,7 +18,7 @@ jobs:
 
       - name: Update status to online
         run: |
-          echo '{"status": "online"}' > status.json
+          echo '{"schemaVersion": 1, "label": "status", "message": "online", "color": "brightgreen"}' > status.json
 
       - name: Commit and push status update
         run: |
