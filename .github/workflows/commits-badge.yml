@@ -16,7 +16,7 @@ jobs:
       - name: Get repository list
         id: list-repos
         run: |
-          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/user/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
+          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/MattEzekiel/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
           echo "::set-output name=repos::$REPOS"
 
       - name: Loop through repositories
