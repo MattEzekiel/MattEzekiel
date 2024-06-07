@@ -24,6 +24,7 @@ jobs:
 
       - name: Loop through repositories
         run: |
+          total_commits=0
           for repo in $(echo "${{ steps.list-repos.outputs.data }}" | jq -r '.[] | select(.fork == false) | .full_name'); do
             echo "Fetching commits for $repo"
             commits=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$repo/commits" | jq 'length')
@@ -33,7 +34,7 @@ jobs:
 
       - name: Generate commit badge
         run: |
-          TOTAL_COMMITS="${{ steps.count-commits.outputs.total_commits }}"
+          TOTAL_COMMITS="${{ steps.update-badge.outputs.total_commits }}"
           echo '{"schemaVersion": 1, "label": "commits", "message": "'"$TOTAL_COMMITS"' commits total", "color": "blue"}' > commit-badge.json
 
       - name: Commit and push commit badge update
