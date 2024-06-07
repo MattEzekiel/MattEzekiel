@@ -13,14 +13,24 @@ jobs:
   update-badge:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Fetch all commits
+        id: fetch-commits
+        uses: octokit/request-action@v2.x
+        with:
+          route: GET /repos/:owner/:repo/commits
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+
+      - name: Count total commits
+        id: count-commits
+        run: |
+          TOTAL_COMMITS=$(jq 'length' <<< "${{ steps.fetch-commits.outputs.data }}")
+          echo "::set-output name=total_commits::$TOTAL_COMMITS"
 
       - name: Generate commit badge
         run: |
-          YEAR=$(date +%Y)
-          COMMITS=$(git log --pretty=oneline --since="$YEAR-01-01" | wc -l)
-          echo '{"schemaVersion": 1, "label": "commits", "message": "'"$COMMITS"' commits this year", "color": "blue"}' > commit-badge.json
+          TOTAL_COMMITS="${{ steps.count-commits.outputs.total_commits }}"
+          echo '{"schemaVersion": 1, "label": "commits", "message": "'"$TOTAL_COMMITS"' commits total", "color": "blue"}' > commit-badge.json
 
       - name: Commit and push commit badge update
         run: |
