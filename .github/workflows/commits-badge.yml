@@ -36,8 +36,7 @@ jobs:
         run: |
           echo "Commits: $TOTAL_COMMITS"
           echo '{"schemaVersion": 1, "label": "commits", "message": $TOTAL_COMMITS "commits total", "color": "blue"}' > commit-badge.json
-          done
-
+          
       - name: Commit and push commit badge update
         run: |
           git config --local user.email "action@github.com"
