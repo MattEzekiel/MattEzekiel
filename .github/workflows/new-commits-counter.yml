@@ -1,0 +1,38 @@
+name: Count Commits
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  fork-badge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history for all branches and tags
+
+      - name: Get commit count
+        id: commit_count
+        run: |
+          total_commits=0
+          for repo in $(gh repo list --limit 100 --json name --jq '.[] | .name')
+          do
+            echo "Checking repo: $repo"
+            commits=$(git -C $repo rev-list --count HEAD)
+            total_commits=$((total_commits + commits))
+          done
+          echo "Total commits: $total_commits"
+          echo "::set-output name=total_commits::$total_commits"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Output total commits
+        run: |
+          echo "Total commits across all repositories: ${{ steps.commit_count.outputs.total_commits }}"
