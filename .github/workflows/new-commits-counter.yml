@@ -25,16 +25,14 @@ jobs:
       - name: Install dependencies
         run: npm install puppeteer
 
-      - name: Run scraper
+      - name: Run scraper and generate commit badge
+        id: commit-badge
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scraper.js
-
-      - name: Generate commit badge
         run: |
           TOTAL_COMMITS=$(node scraper.js)
           echo "Commits: $TOTAL_COMMITS"
-          echo '{"schemaVersion": 1, "label": "commits", "message": "'"$TOTAL_COMMITS"' commits", "color": "blue"}' > commit-count-badge.json
+          echo '{"schemaVersion": 1, "label": "'"$TOTAL_COMMITS"' commits", "color": "blue"}' > commit-count-badge.json
 
       - name: Upload badge
         uses: actions/upload-artifact@v2
