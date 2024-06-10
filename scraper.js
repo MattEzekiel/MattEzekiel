@@ -24,10 +24,7 @@ async function getPublicRepos(username) {
 }
 
 async function getCommits(username, repo) {
-    const browser = await puppeteer.launch({
-        headless: false,
-        slowMo: 5000,
-    });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     const url = `https://github.com/${username}/${repo}`;
