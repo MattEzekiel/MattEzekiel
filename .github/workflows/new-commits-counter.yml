@@ -25,8 +25,10 @@ jobs:
           for repo in $(gh repo list --limit 100 --json name --jq '.[] | .name')
           do
             echo "Cloning repo: $repo"
+            repo_temp=$(mktemp -d)
             git clone https://github.com/MattEzekiel/$repo.git $repo_temp
             cd $repo_temp
+            git init # Initialize the directory as a git repository
             commits=$(git rev-list --count HEAD)
             total_commits=$((total_commits + commits))
             cd ..
