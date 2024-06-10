@@ -34,14 +34,15 @@ async function getCommits(username, repo) {
     await page.setViewport({width: 1080, height: 1024});
 
     const commitsText = await page.evaluate(() => {
-        const commitSpan = document.querySelector('span.gPDEWA');
-        return commitSpan ? commitSpan.textContent.trim() : '';
+        const commitSpan = document.querySelectorAll('span.gPDEWA');
+        const commitsText = commitSpan.at(-1);
+        return commitsText ? commitsText.textContent.trim() : '';
     });
     console.log("commitsText", commitsText ?? 'Vacío');
 
     await browser.close();
 
-    const clearText = commitsText.replaceAll('commits', '').trim();
+    const clearText = commitsText.replaceAll('Commits', '').trim();
 
     return parseInt(clearText || 0);
 }
