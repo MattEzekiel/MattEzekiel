@@ -1,5 +1,9 @@
 const puppeteer = require('puppeteer');
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function getPublicRepos(username) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -30,6 +34,7 @@ async function getCommits(username, repo) {
     console.log("Visiting url: ", url);
     await page.goto(url);
 
+    await sleep(5000);
     await page.waitForSelector('span.Text-sc-17v1xeu-0.gPDEWA');
 
     const commitsText = await page.evaluate(() => {
