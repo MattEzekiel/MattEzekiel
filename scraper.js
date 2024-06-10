@@ -1,57 +1,33 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
+const puppeteer = require('puppeteer');
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const USERNAME = 'MattEzekiel';
+async function getCommits(username, repo) {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    const url = `https://github.com/${username}/${repo}`;
+    await page.goto(url);
 
-async function getRepos(username) {
-    let repos = [];
-    let page = 1;
-    let url = `https://api.github.com/users/${username}/repos?per_page=100&page=`;
-    while (true) {
-        const { data } = await axios.get(url + page, {
-            headers: { Authorization: `token ${GITHUB_TOKEN}` }
-        });
-        if (data.length === 0) break;
-        repos = repos.concat(data.map(repo => repo.full_name));
-        page++;
-    }
-    return repos;
-}
+    // Esperar a que se cargue el contenido
+    await page.waitForSelector('span.Text-sc-17v1xeu-0.gPDEWA');
 
-async function getCommits(repo) {
-    let totalCommits = 0;
-    let page = 1;
-    while (true) {
-        const { data } = await axios.get(`https://github.com/${repo}/commits`, {
-            headers: { Authorization: `token ${GITHUB_TOKEN}` }
-        });
-        const $ = cheerio.load(data);
-        const commitElements = $(`span.Text-sc-17v1xeu-0.gPDEWA`);
-        if (commitElements.length === 0) break;
-        commitElements.each((_, element) => {
-            const text = $(element).text().replace(/,/g, '');
-            totalCommits += parseInt(text, 10);
-        });
-        const nextPage = $('a.next_page');
-        if (!nextPage || !nextPage.attr('href')) break;
-        page++;
-    }
-    return totalCommits;
+    // Extraer el texto del span con las clases especificadas
+    const commitsText = await page.evaluate(() => {
+        const span = document.querySelector('span.Text-sc-17v1xeu-0.gPDEWA');
+        return span ? span.textContent.trim() : '';
+    });
+
+    // Cerrar el navegador
+    await browser.close();
+
+    // Convertir el texto a un número
+    const commits = parseInt(commitsText.replace(/,/g, ''), 10) || 0;
+    return commits;
 }
 
 async function main() {
-    const repos = await getRepos(USERNAME);
-    let totalCommits = 0;
-    for (const repo of repos) {
-        try {
-            const commits = await getCommits(repo);
-            totalCommits += commits;
-        } catch (error) {
-            console.log(`Error fetching commits for ${repo}:`, error.message);
-        }
-    }
-    console.log(`TOTAL_COMMITS=${totalCommits}`);
+    const username = 'TuUsuarioGitHub';  // Reemplaza con tu nombre de usuario de GitHub
+    const repo = 'NombreDelRepositorio';  // Reemplaza con el nombre de tu repositorio
+    const commits = await getCommits(username, repo);
+    console.log(`Commits en ${repo}: ${commits}`);
 }
 
 main().catch(console.error);
