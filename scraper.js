@@ -33,8 +33,10 @@ async function getCommits(username, repo) {
     const url = `https://github.com/${username}/${repo}`;
     console.log("Visiting url: ", url);
     await page.goto(url);
+    await page.setViewport({width: 1080, height: 1024});
 
     await sleep(5000);
+    console.log('Sleeping for 5 seconds...');
     await page.waitForSelector('span.Text-sc-17v1xeu-0.gPDEWA');
 
     const commitsText = await page.evaluate(() => {
