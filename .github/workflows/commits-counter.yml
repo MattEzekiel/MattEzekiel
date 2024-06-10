@@ -1,0 +1,50 @@
+name: Count Commits
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  count-commits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install js-yaml @octokit/rest fs
+
+      - name: Run scraper and generate commit badge
+        id: commit-badge
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TOTAL_COMMITS=$(node get-commits.js)
+          echo "Commits: $TOTAL_COMMITS"
+          echo '{"schemaVersion": 1, "label": "Commits", "message": "'"$TOTAL_COMMITS"' commits", "color": "blue"}' > commit-badge.json
+
+      - name: Upload badge
+        uses: actions/upload-artifact@v2
+        with:
+          name: commit-badge
+          path: commit-badge.json
+
+      - name: Commit and push badge update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git status
+          git add commit-badge.json
+          git commit -m "Update commit badge"
+          git push
