@@ -2,7 +2,7 @@ name: Update Star Badge
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 1 * *'
   push:
     branches: [ "main" ]
   pull_request:
