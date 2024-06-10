@@ -38,17 +38,21 @@ async function getCommits(username, repo) {
 
     await sleep(5000);
     console.log('Sleeping for 5 seconds...');
-    await page.waitForSelector('span.Text-sc-17v1xeu-0.gPDEWA');
+    await page.waitForSelector('a[aria-label="Commit history"]');
 
     const commitsText = await page.evaluate(() => {
-        const span = document.querySelector('span.Text-sc-17v1xeu-0.gPDEWA');
-        return span ? span.textContent.trim() : '';
+        const commitHistoryLink = document.querySelector('a[aria-label="Commit history"]');
+        console.log("commitHistoryLink:", commitHistoryLink)
+        const commitCountSpan = commitHistoryLink.nextElementSibling.querySelector('span > span:nth-child(2)');
+        console.log("commitCountSpan:", commitCountSpan)
+        return commitCountSpan ? commitCountSpan.textContent.trim() : '';
     });
 
     await browser.close();
 
     return parseInt(commitsText.replace(/,/g, ''), 10) || 0;
 }
+
 
 async function main() {
     const username = 'MattEzekiel';
@@ -57,7 +61,7 @@ async function main() {
     for (const repo of publicRepos) {
         const repository = repo.split(' ')[0];
         const commits = await getCommits(username, repository);
-        console.log(`Commits en ${repo}: ${commits}`);
+        console.log(`Commits en ${repository}: ${commits}`);
         totalCommits += commits;
     }
     console.log(`Total de commits en todos los repositorios públicos: ${totalCommits}`);
