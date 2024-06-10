@@ -1,9 +1,5 @@
 const puppeteer = require('puppeteer');
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 async function getPublicRepos(username) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
@@ -28,31 +24,27 @@ async function getPublicRepos(username) {
 }
 
 async function getCommits(username, repo) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        headless: false,
+        slowMo: 5000,
+    });
     const page = await browser.newPage();
-    console.log(repo);
+
     const url = `https://github.com/${username}/${repo}`;
     console.log("Visiting url: ", url);
+
     await page.goto(url);
     await page.setViewport({width: 1080, height: 1024});
 
-    await sleep(5000);
-    console.log('Sleeping for 5 seconds...');
-    await page.waitForSelector('a[aria-label="Commit history"]');
-
     const commitsText = await page.evaluate(() => {
-        const commitHistoryLink = document.querySelector('a[aria-label="Commit history"]');
-        console.log("commitHistoryLink:", commitHistoryLink)
-        const commitCountSpan = commitHistoryLink.nextElementSibling.querySelector('span > span:nth-child(2)');
-        console.log("commitCountSpan:", commitCountSpan)
-        return commitCountSpan ? commitCountSpan.textContent.trim() : '';
+        const commitSpan = document.querySelector('span.gPDEWA');
+        return commitSpan ? commitSpan.textContent.trim() : '';
     });
+    console.log("commitsText", commitsText ?? 'Vacío');
 
     await browser.close();
 
     const clearText = commitsText.replaceAll('commits', '').trim();
-    console.log("clearText", clearText)
-    console.log("commitsText", commitsText)
 
     return parseInt(clearText || 0);
 }
