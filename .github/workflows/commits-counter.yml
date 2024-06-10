@@ -1,4 +1,4 @@
-name: Count Commits
+name: Commit Counter
 
 on:
   schedule:
@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  count-commits:
+  commit-counter:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +23,7 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: npm install js-yaml @octokit/rest fs
+        run: npm install dotenv @octokit/rest
 
       - name: Run scraper and generate commit badge
         id: commit-badge

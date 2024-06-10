@@ -1,10 +1,7 @@
 const { Octokit } = require("@octokit/rest");
-const yaml = require('js-yaml');
-const fs = require('fs');
+require('dotenv').config();
 
-const config = yaml.load(fs.readFileSync('your-config.yml', 'utf8'));
-
-const githubToken = config.env.GITHUB_TOKEN;
+const githubToken = process.env.GITHUB_TOKEN;
 
 const octokit = new Octokit({
     auth: githubToken
@@ -13,6 +10,7 @@ const octokit = new Octokit({
 async function getMyCommits() {
     try {
         const response = await octokit.activity.listEventsForAuthenticatedUser();
+        console.log('Data', response.data);
         return response.data.filter(event => event.type === 'PushEvent');
     } catch (error) {
         console.error(error);
