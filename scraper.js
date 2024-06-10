@@ -35,7 +35,7 @@ async function getCommits(username, repo) {
 
     const commitsText = await page.evaluate(() => {
         const commitSpan = document.querySelectorAll('span.gPDEWA');
-        const commitsText = commitSpan.at(-1);
+        const commitsText = commitSpan[commitSpan.length - 1];
         return commitsText ? commitsText.textContent.trim() : '';
     });
     console.log("commitsText", commitsText ?? 'Vacío');
