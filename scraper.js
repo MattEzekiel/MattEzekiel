@@ -28,7 +28,7 @@ async function getCommits(username, repo) {
     const page = await browser.newPage();
 
     const url = `https://github.com/${username}/${repo}`;
-    console.log("Visiting url: ", url);
+    // console.log("Visiting url: ", url);
 
     await page.goto(url);
     await page.setViewport({width: 1080, height: 1024});
@@ -38,7 +38,7 @@ async function getCommits(username, repo) {
         const commitsText = commitSpan[commitSpan.length - 1];
         return commitsText ? commitsText.textContent.trim() : '';
     });
-    console.log("commitsText", commitsText ?? 'Vacío');
+    // console.log("commitsText", commitsText ?? 'Vacío');
 
     await browser.close();
 
@@ -55,10 +55,12 @@ async function main() {
     for (const repo of publicRepos) {
         const repository = repo.split(' ')[0];
         const commits = await getCommits(username, repository);
-        console.log(`Commits en ${repository}: ${commits}`);
+        // console.log(`Commits en ${repository}: ${commits}`);
         totalCommits += commits;
     }
-    console.log(`Total de commits en todos los repositorios públicos: ${totalCommits}`);
+    // console.log(`Total de commits en todos los repositorios públicos: ${totalCommits}`);
+    console.log(totalCommits);
+    return totalCommits;
 }
 
 main().catch(console.error);
