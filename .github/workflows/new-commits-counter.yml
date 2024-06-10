@@ -25,7 +25,7 @@ jobs:
           for repo in $(gh repo list --limit 100 --json name --jq '.[] | .name')
           do
             echo "Cloning repo: $repo"
-            git clone https://github.com/usuario/$repo.git $repo_temp
+            git clone https://github.com/MattEzekiel/$repo.git $repo_temp
             cd $repo_temp
             commits=$(git rev-list --count HEAD)
             total_commits=$((total_commits + commits))
