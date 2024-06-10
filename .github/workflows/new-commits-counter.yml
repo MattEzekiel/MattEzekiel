@@ -12,40 +12,43 @@ on:
 jobs:
   count-commits:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
       - name: Get repository list
         id: list-repos
         run: |
-          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/MattEzekiel/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
+          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/user/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
           echo "REPOS=$REPOS"
           REPOS_LIST=$(echo "$REPOS" | tr '\n' ' ')
           echo "REPOS_LIST=$REPOS_LIST" >> $GITHUB_ENV
 
-      - name: Loop through repositories
-        run: |
-          total_commits=0
-          for repo in $REPOS_LIST; do
-            echo "Fetching commit activity for $repo"
-            activity=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo/stats/contributors")
-            commits=$(echo $activity | jq '.[].total' | jq -s 'add')
-            echo "Commits: $commits"
-            total_commits=$((total_commits + commits))
-          done
-          echo "TOTAL_COMMITS=$total_commits" >> $GITHUB_ENV
+      - name: Scrape commits
+        id: scrape_commits
+        run: python scrape_commits.py "${{ env.REPOS_LIST }}"
 
       - name: Generate commit badge
         run: |
-          TOTAL_COMMITS=$(echo "${{ env.TOTAL_COMMITS }}")
+          TOTAL_COMMITS=${{ steps.scrape_commits.outputs.total_commits }}
           echo "Commits: $TOTAL_COMMITS"
           echo '{"schemaVersion": 1, "label": "commits", "message": "'"$TOTAL_COMMITS"' commits", "color": "blue"}' > commit-count-badge.json
 
       - name: Upload badge
         uses: actions/upload-artifact@v3
         with:
-          name: commit-count-badge
+          name: commit-badge
           path: commit-count-badge.json
 
       - name: Commit and push badge update
