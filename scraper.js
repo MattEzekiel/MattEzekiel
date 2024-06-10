@@ -1,66 +1,36 @@
 const puppeteer = require('puppeteer');
 
-async function getPublicRepos(username) {
+async function getContributionCount(username, year) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    const url = `https://github.com/${username}?tab=repositories&type=source`;
+    const url = `https://github.com/${username}?tab=overview&from=${year}-01-01&to=${year}-12-31`;
     await page.goto(url);
 
-    await page.waitForSelector('h3');
-
-    const publicRepos = await page.evaluate(() => {
-        const repos = [];
-        const repoElements = document.querySelectorAll('h3');
-        repoElements.forEach(element => {
-            const repoName = element.textContent.trim();
-            repos.push(repoName);
-        });
-        return repos;
-    });
-
-    await browser.close();
-
-    return publicRepos;
-}
-
-async function getCommits(username, repo) {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-
-    const url = `https://github.com/${username}/${repo}`;
-    // console.log("Visiting url: ", url);
-
-    await page.goto(url);
+    await page.waitForSelector('.js-yearly-contributions h2');
     await page.setViewport({width: 1080, height: 1024});
 
-    const commitsText = await page.evaluate(() => {
-        const commitSpan = document.querySelectorAll('span.gPDEWA');
-        const commitsText = commitSpan[commitSpan.length - 1];
-        return commitsText ? commitsText.textContent.trim() : '';
+    const contributionText = await page.evaluate(() => {
+        const contributionHeader = document.querySelector('.js-yearly-contributions h2');
+        return contributionHeader ? contributionHeader.textContent.trim() : '';
     });
-    // console.log("commitsText", commitsText ?? 'Vacío');
 
     await browser.close();
 
-    const clearText = commitsText.replaceAll('Commits', '').trim();
-
-    return parseInt(clearText || 0);
+    return parseInt(contributionText.split(' ')[0]) || 0;
 }
-
 
 async function main() {
     const username = 'MattEzekiel';
-    const publicRepos = await getPublicRepos(username);
-    let totalCommits = 0;
-    for (const repo of publicRepos) {
-        const repository = repo.split(' ')[0];
-        const commits = await getCommits(username, repository);
-        // console.log(`Commits en ${repository}: ${commits}`);
-        totalCommits += commits;
+    const currentYear = new Date().getFullYear();
+    let totalContributions = 0;
+
+    for (let year = 2019; year <= currentYear; year++) {
+        const contributions = await getContributionCount(username, year);
+        totalContributions += contributions;
     }
-    // console.log(`Total de commits en todos los repositorios públicos: ${totalCommits}`);
-    console.log(totalCommits);
-    return totalCommits;
+
+    console.log(`Total de contribuciones en todos los años: ${totalContributions}`);
+    return totalContributions;
 }
 
 main().catch(console.error);
