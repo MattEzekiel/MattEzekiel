@@ -32,7 +32,7 @@ jobs:
         run: |
           TOTAL_COMMITS=$(node scraper.js)
           echo "Commits: $TOTAL_COMMITS"
-          echo '{"schemaVersion": 1, "message": "'"$TOTAL_COMMITS"' commits", "color": "blue"}' > commit-count-badge.json
+          echo '{"schemaVersion": 1, "label": "Commits", "message": "'"$TOTAL_COMMITS"' commits", "color": "blue"}' > commit-count-badge.json
 
       - name: Upload badge
         uses: actions/upload-artifact@v2
