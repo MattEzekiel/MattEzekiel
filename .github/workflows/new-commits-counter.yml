@@ -30,7 +30,7 @@ jobs:
       - name: Get repository list
         id: list-repos
         run: |
-          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/user/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
+          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/MattEzkiel/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
           echo "REPOS=$REPOS"
           REPOS_LIST=$(echo "$REPOS" | tr '\n' ' ')
           echo "REPOS_LIST=$REPOS_LIST" >> $GITHUB_ENV
