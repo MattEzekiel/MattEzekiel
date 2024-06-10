@@ -29,7 +29,8 @@ async function main() {
         totalContributions += contributions;
     }
 
-    console.log(`Total de contribuciones en todos los años: ${totalContributions}`);
+    // console.log(`Total de contribuciones en todos los años: ${totalContributions}`);
+    console.log(totalContributions);
     return totalContributions;
 }
 
