@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  fork-badge:
+  count-commits:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
