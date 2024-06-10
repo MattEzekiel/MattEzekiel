@@ -51,6 +51,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git status
           git add watcher-badge.json
           git add ../../readme.md
           git commit -m "Update watcher badge"

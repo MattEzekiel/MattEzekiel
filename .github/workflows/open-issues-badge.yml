@@ -51,6 +51,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git status
           git add open-issues-badge.json
           git add ../../readme.md
           git commit -m "Update open issues badge"
