@@ -52,6 +52,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add fork-badge.json
-          git add readme.md
+          git add ../../readme.md
           git commit -m "Update fork badge"
           git push
