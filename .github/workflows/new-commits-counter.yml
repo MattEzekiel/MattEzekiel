@@ -23,7 +23,7 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: npm install axios cheerio
+        run: npm install puppeteer
 
       - name: Run scraper
         env:
