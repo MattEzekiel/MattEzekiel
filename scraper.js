@@ -55,7 +55,8 @@ async function main() {
     const publicRepos = await getPublicRepos(username);
     let totalCommits = 0;
     for (const repo of publicRepos) {
-        const commits = await getCommits(username, repo);
+        const repository = repo.split(' ')[0];
+        const commits = await getCommits(username, repository);
         console.log(`Commits en ${repo}: ${commits}`);
         totalCommits += commits;
     }
