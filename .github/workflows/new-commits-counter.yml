@@ -24,15 +24,15 @@ jobs:
           total_commits=0
           for repo in $(gh repo list --limit 100 --json name --jq '.[] | .name')
           do
-            echo "Checking repo: $repo"
-            commits=$(git -C $repo rev-list --count HEAD)
+            echo "Cloning repo: $repo"
+            git clone https://github.com/usuario/$repo.git $repo_temp
+            cd $repo_temp
+            commits=$(git rev-list --count HEAD)
             total_commits=$((total_commits + commits))
+            cd ..
+            rm -rf $repo_temp
           done
           echo "Total commits: $total_commits"
           echo "::set-output name=total_commits::$total_commits"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Output total commits
-        run: |
-          echo "Total commits across all repositories: ${{ steps.commit_count.outputs.total_commits }}"
