@@ -53,7 +53,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git status
           git add star-badge.json
-          cd ../..
-          git add readme.md
           git commit -m "Update star badge"
           git push
