@@ -27,6 +27,7 @@ async function getCommits(username, repo) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     const url = `https://github.com/${username}/${repo}`;
+    console.log("Visiting url: ", url);
     await page.goto(url);
 
     await page.waitForSelector('span.Text-sc-17v1xeu-0.gPDEWA');
