@@ -28,9 +28,9 @@ jobs:
         run: |
           total_commits=0
           for repo in $REPOS_LIST; do
-            echo "Fetching commits for $repo"
+            echo "Fetching commit activity for $repo"
             activity=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo/stats/contributors")
-            commits=$(echo $activity | jq '.[] | select(.author.login == "MattEzekiel") | .total')
+            commits=$(echo $activity | jq '.[].total' | jq -s 'add')
             echo "Commits: $commits"
             total_commits=$((total_commits + commits))
           done
