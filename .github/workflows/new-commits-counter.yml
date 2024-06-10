@@ -12,42 +12,32 @@ on:
 jobs:
   count-commits:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      - name: Get repository list
-        id: list-repos
-        run: |
-          REPOS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/users/MattEzekiel/repos?type=all&visibility=all" | jq -r '.[] | .full_name')
-          echo "REPOS=$REPOS"
-          REPOS_LIST=$(echo "$REPOS" | tr '\n' ' ')
-          echo "REPOS_LIST=$REPOS_LIST" >> $GITHUB_ENV
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-      - name: Loop through repositories
-        run: |
-          total_commits=0
-          for repo in $REPOS_LIST; do
-            echo "Fetching commit activity for $repo"
-            activity=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" "https://api.github.com/repos/$repo/stats/contributors")
-            echo "Activity response: $activity"
-            commits=$(echo $activity | jq 'map(select(.author.login == "MattEzekiel")) | .[].total // 0' | jq -s 'add')
-            if [ "$commits" = "null" ]; then
-              commits=0
-            fi
-            echo "Commits: $commits"
-            total_commits=$((total_commits + commits))
-          done
-          echo "TOTAL_COMMITS=$total_commits" >> $GITHUB_ENV
+      - name: Install dependencies
+        run: npm install axios cheerio
+
+      - name: Run scraper
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scraper.js
 
       - name: Generate commit badge
         run: |
-          TOTAL_COMMITS=$(echo "${{ env.TOTAL_COMMITS }}")
+          TOTAL_COMMITS=$(node scraper.js)
           echo "Commits: $TOTAL_COMMITS"
           echo '{"schemaVersion": 1, "label": "commits", "message": "'"$TOTAL_COMMITS"' commits", "color": "blue"}' > commit-count-badge.json
 
       - name: Upload badge
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: commit-badge
           path: commit-count-badge.json
