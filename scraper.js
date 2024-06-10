@@ -50,7 +50,11 @@ async function getCommits(username, repo) {
 
     await browser.close();
 
-    return parseInt(commitsText.replace(/,/g, ''), 10) || 0;
+    const clearText = commitsText.replaceAll('commits', '').trim();
+    console.log("clearText", clearText)
+    console.log("commitsText", commitsText)
+
+    return parseInt(clearText || 0);
 }
 
 
