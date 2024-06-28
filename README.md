@@ -186,9 +186,9 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=MattEzekiel&layout=compact&theme=vision-friendly-dark" alt="stats">  
   
 </div>
-
+&nbsp;&nbsp;
 <div align="center">
 
-[![spotify-github-profile](https://spotify-github-profile.vercel.app/api/view?uid=11120684304&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=false)](https://github.com/kittinan/spotify-github-profile)
+[![spotify-github-profile](https://spotify-github-profile.kittinanx.com/api/view?uid=11120684304&cover_image=true&theme=default&show_offline=false&background_color=121212&interchange=false)](https://github.com/kittinan/spotify-github-profile)
   
 </div>
