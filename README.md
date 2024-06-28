@@ -1,4 +1,7 @@
 ![](https://komarev.com/ghpvc/?username=MattEzekiel&color=blue&style=for-the-badge)
+<a href="https://github.com/sponsors/mattezekiel" target="_blank">
+    <img src="https://img.shields.io/badge/sponsor-30363D?style=for-the-badge&logo=GitHub-Sponsors&logoColor=#white" />
+</a>
 
 <div id="header" align="center">
   <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="coding">
