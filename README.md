@@ -24,8 +24,9 @@
 
 - 🧱 Working as a freelancer I develop skills that put me in a rol of Software Architecture
 
-- :mailbox:How to reach me: [![Linkedin Badge](https://img.shields.io/badge/-matiasbubello-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/matias-bubello/) 
-- <a href="https://www.behance.net/mattbubello" target="_blank"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white" alt="behance" /></a>
+- :mailbox:How to reach me:
+  - <a href="https://www.linkedin.com/in/matias-bubello/" target="_blank"><img src="https://img.shields.io/badge/Linkedin-0E80C1?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" /></a>
+  - <a href="https://www.behance.net/mattbubello" target="_blank"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white" alt="behance" /></a>
 
 <hr>
 
