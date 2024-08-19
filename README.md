@@ -25,7 +25,7 @@
 - 🧱 Working as a freelancer I develop skills that put me in a rol of Software Architecture
 
 - 📩 More about me:
-  -  [![NPM - My NPM packages](https://img.shields.io/badge/NPM-My_NPM_packages-ea2039?logo=NPM&logoColor=ea2039)](https://www.npmjs.com/~mattezekiel)
+  -  [![NPM - My NPM packages](https://img.shields.io/badge/NPM-My_NPM_packages-ea2039?style=for-the-badge&logo=NPM&logoColor=ea2039)](https://www.npmjs.com/~mattezekiel)
   - <a href="https://www.linkedin.com/in/matias-bubello/" target="_blank"><img src="https://img.shields.io/badge/Linkedin-0E80C1?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" /></a>
   - <a href="https://www.behance.net/mattbubello" target="_blank"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white" alt="behance" /></a>
 
