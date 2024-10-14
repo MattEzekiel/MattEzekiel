@@ -35,7 +35,7 @@ jobs:
           echo '{"schemaVersion": 1, "label": "Commits", "message": "'"$TOTAL_COMMITS"' total", "color": "blue"}' > commit-count-badge.json
 
       - name: Upload badge
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: commit-badge
           path: commit-count-badge.json
