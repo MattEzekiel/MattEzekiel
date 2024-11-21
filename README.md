@@ -114,7 +114,7 @@ _I am open to new opportunities/contributions._
   <img src="http://img.shields.io/badge/git-brown?style=for-the-badge&logo=git&logoColor=white" alt="git">
   <img src="http://img.shields.io/badge/github-black?style=for-the-badge&logo=github&logoColor=white" alt="github">
   <img src="http://img.shields.io/badge/gitlab-lightsalmon?style=for-the-badge&logo=gitlab&logoColor=white" alt="gitlab">
-  ![Github Actions](https://img.shields.io/badge/-Github_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+  <img src="https://img.shields.io/badge/-Github_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white">
 </div>
 
 &nbsp;
