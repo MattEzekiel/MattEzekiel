@@ -7,7 +7,7 @@
   <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="coding">
 </div>
 
-# Hi there 👋 I am Matías (Matt) Bubello
+# Hi there <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px"> I am Matías (Matt) Bubello
 ![Commits](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Fcommit-count-badge.json&query=message&label=Commits&color=blue)
 ![Stars](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Fstar-badge.json&query=message&label=Stars&color=yellow)
 ![Forks](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FMattEzekiel%2FMattEzekiel%2Fmain%2Ffork-badge.json&query=message&label=Forks&color=purple)
@@ -22,12 +22,18 @@
 
 - :telescope: as a Full Stack developer/engineer, my focus on create web applications are in performance, UX and SEO.
 
-- 🧱 Working as a freelancer I develop skills that put me in a rol of Software Architecture
+## 📧 You can contact me on:
 
-- 📩 More about me:
-  -  [![NPM - My NPM packages](https://img.shields.io/badge/NPM-My_NPM_packages-ea2039?style=for-the-badge&logo=NPM&logoColor=ea2039)](https://www.npmjs.com/~mattezekiel)
-  - <a href="https://www.linkedin.com/in/matias-bubello/" target="_blank"><img src="https://img.shields.io/badge/Linkedin-0E80C1?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" /></a>
-  - <a href="https://www.behance.net/mattbubello" target="_blank"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white" alt="behance" /></a>
+<a href="mailto:matt.bubello@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/matias-bubello/)
+
+_I am open to new opportunities/contributions._
+
+## 🔎 You can find or reach me on:
+
+[![NPM - My NPM packages](https://img.shields.io/badge/NPM-My_NPM_packages-ea2039?style=for-the-badge&logo=NPM&logoColor=ea2039)](https://www.npmjs.com/~mattezekiel)
+<a href="https://www.linkedin.com/in/matias-bubello/" target="_blank"><img src="https://img.shields.io/badge/Linkedin-0E80C1?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" /></a>
+<a href="https://www.behance.net/mattbubello" target="_blank"><img src="https://img.shields.io/badge/Behance-0054F7?style=for-the-badge&logo=behance&logoColor=white" alt="behance" /></a>
 
 <hr>
 
@@ -60,11 +66,17 @@
   <img src="https://img.shields.io/badge/tailwindcss-deepskyblue?logo=tailwindcss&logoColor=white&style=for-the-badge" alt="tailwindcss">
   <img src="https://img.shields.io/badge/Font_Awesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white" alt="FontAwesome">
   <img src="https://img.shields.io/badge/Material%20UI-007FFF?style=for-the-badge&logo=mui&logoColor=white" alt="MaterialUI">
+  ![Semantic UI React](https://img.shields.io/badge/Semantic%20UI%20React-%2335BDB2.svg?style=for-the-badge&logo=SemanticUIReact&logoColor=white)
+  ![Ant-Design](https://img.shields.io/badge/-AntDesign-%230170FE?style=for-the-badge&logo=ant-design&logoColor=white)
+  ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
   <img src="https://img.shields.io/badge/Astro-0C1222?style=for-the-badge&logo=astro&logoColor=FDFDFE" alt="Astro">
-  <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white" alt="React Router">
+  ![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)
+  ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+  ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
   <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" alt="React Redux">
   <img src="https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white" alt="Socket.IO">
   <img src="https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white" alt="Cypress">
+  ![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
 </div>
 
 &nbsp;
@@ -102,6 +114,7 @@
   <img src="http://img.shields.io/badge/git-brown?style=for-the-badge&logo=git&logoColor=white" alt="git">
   <img src="http://img.shields.io/badge/github-black?style=for-the-badge&logo=github&logoColor=white" alt="github">
   <img src="http://img.shields.io/badge/gitlab-lightsalmon?style=for-the-badge&logo=gitlab&logoColor=white" alt="gitlab">
+  ![Github Actions](https://img.shields.io/badge/-Github_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 </div>
 
 &nbsp;
