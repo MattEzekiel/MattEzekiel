@@ -29,7 +29,7 @@
 
 _I am open to new opportunities/contributions._
 
-## 🔎 You can find or reach me on:
+## 🔎 You can find some of my work on:
 
 [![NPM - My NPM packages](https://img.shields.io/badge/NPM-My_NPM_packages-ea2039?style=for-the-badge&logo=NPM&logoColor=ea2039)](https://www.npmjs.com/~mattezekiel)
 <a href="https://www.linkedin.com/in/matias-bubello/" target="_blank"><img src="https://img.shields.io/badge/Linkedin-0E80C1?style=for-the-badge&logo=linkedin&logoColor=white" alt="Linkedin" /></a>
