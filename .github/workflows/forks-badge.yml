@@ -42,7 +42,7 @@ jobs:
           echo '{"schemaVersion": 1, "label": "forks", "message": "'"$TOTAL_FORKS"' total", "color": "green"}' > fork-badge.json
 
       - name: Upload badge
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: fork-badge
           path: fork-badge.json

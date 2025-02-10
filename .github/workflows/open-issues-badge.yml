@@ -42,7 +42,7 @@ jobs:
           echo '{"schemaVersion": 1, "label": "open issues", "message": "'"$TOTAL_OPEN_ISSUES"' total", "color": "red"}' > open-issues-badge.json
 
       - name: Upload badge
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: open-issues-badge
           path: open-issues-badge.json

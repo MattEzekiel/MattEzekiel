@@ -42,7 +42,7 @@ jobs:
           echo '{"schemaVersion": 1, "label": "watchers", "message": "'"$TOTAL_WATCHERS"' total", "color": "orange"}' > watcher-badge.json
 
       - name: Upload badge
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: watcher-badge
           path: watcher-badge.json

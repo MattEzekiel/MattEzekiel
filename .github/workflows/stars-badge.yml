@@ -42,7 +42,7 @@ jobs:
           echo '{"schemaVersion": 1, "label": "stars", "message": "'"$TOTAL_STARS"' total", "color": "yellow"}' > star-badge.json
 
       - name: Upload badge
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: star-badge
           path: star-badge.json
