@@ -104,6 +104,7 @@ _I am open to new opportunities/contributions._
 ### 🧠 Headless CMS 🧠
 <div class="badge">
     <img src="https://img.shields.io/badge/strapi-2F2E8B?style=for-the-badge&logo=strapi&logoColor=whit" alt="Strapi">
+    <img src="https://img.shields.io/badge/-Medusa-000000?style=for-the-badge&logo=medusa&logoColor=white" alt="Medusa js"/>
 </div> 
 
 &nbsp;
