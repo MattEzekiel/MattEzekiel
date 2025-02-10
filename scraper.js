@@ -1,7 +1,9 @@
 const puppeteer = require('puppeteer');
 
 async function getContributionCount(username, year) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
     const page = await browser.newPage();
     const url = `https://github.com/${username}?tab=overview&from=${year}-01-01&to=${year}-12-31`;
     await page.goto(url);
