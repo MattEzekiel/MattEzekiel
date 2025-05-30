@@ -1,8 +1,8 @@
-name: Count Total Contributions
+name: Count Commits
 
 on:
   schedule:
-    - cron: '0 0 1 * *'  # Ejecuta el primer día de cada mes
+    - cron: '0 0 1 * *'
   push:
     branches: [ "main" ]
   pull_request:
@@ -10,154 +10,43 @@ on:
   workflow_dispatch:
 
 jobs:
-  count-contributions:
+  count-commits:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install dependencies
-        run: npm install @octokit/rest
+        run: npm install puppeteer
 
-      - name: Create contributions counter script
-        run: |
-          cat > count-contributions.js << 'EOF'
-          const { Octokit } = require('@octokit/rest');
-
-          async function getTotalContributions() {
-            const octokit = new Octokit({
-              auth: process.env.GITHUB_TOKEN
-            });
-
-            try {
-              // Obtener información del usuario autenticado
-              const { data: user } = await octokit.rest.users.getAuthenticated();
-              const username = user.login;
-              const accountCreationYear = new Date(user.created_at).getFullYear();
-              const currentYear = new Date().getFullYear();
-          
-              console.log(`Usuario: ${username}`);
-              console.log(`Cuenta creada en: ${accountCreationYear}`);
-          
-              let totalContributions = 0;
-              const yearlyContributions = {};
-
-              // Iterar por cada año desde la creación de la cuenta
-              for (let year = accountCreationYear; year <= currentYear; year++) {
-                const startDate = `${year}-01-01T00:00:00Z`;
-                const endDate = `${year}-12-31T23:59:59Z`;
-          
-                // Query GraphQL para obtener contribuciones del año específico
-                const query = `
-                  query($username: String!, $from: DateTime!, $to: DateTime!) {
-                    user(login: $username) {
-                      contributionsCollection(from: $from, to: $to) {
-                        totalCommitContributions
-#                        totalIssueContributions
-#                        totalPullRequestContributions
-#                        totalPullRequestReviewContributions
-#                        totalRepositoryContributions
-                      }
-                    }
-                  }
-                `;
-
-                try {
-                  const response = await octokit.graphql(query, {
-                    username: username,
-                    from: startDate,
-                    to: endDate
-                  });
-
-                  const contributions = response.user.contributionsCollection;
-                  const yearTotal = 
-                    contributions.totalCommitContributions
-#                    contributions.totalIssueContributions +
-#                    contributions.totalPullRequestContributions +
-#                    contributions.totalPullRequestReviewContributions +
-#                    contributions.totalRepositoryContributions;
-
-                  yearlyContributions[year] = yearTotal;
-                  totalContributions += yearTotal;
-
-                  console.log(`${year}: ${yearTotal} contribuciones`);
-
-                  // Pequeña pausa para evitar rate limiting
-                  await new Promise(resolve => setTimeout(resolve, 100));
-
-                } catch (error) {
-                  console.error(`Error obteniendo datos para ${year}:`, error.message);
-                }
-              }
-
-              console.log(`\nResumen por años:`);
-              Object.entries(yearlyContributions).forEach(([year, count]) => {
-                console.log(`${year}: ${count}`);
-              });
-
-              console.log(`\nTotal de contribuciones: ${totalContributions}`);
-              return totalContributions;
-
-            } catch (error) {
-              console.error('Error:', error.message);
-              return 0;
-            }
-          }
-
-          getTotalContributions().then(total => {
-            process.stdout.write(total.toString());
-          });
-          EOF
-
-      - name: Run contributions counter and generate badge
-        id: contributions-badge
+      - name: Run scraper and generate commit badge
+        id: commit-badge
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TOTAL_CONTRIBUTIONS=$(node count-contributions.js)
-          echo "Total contributions: $TOTAL_CONTRIBUTIONS"
-          echo "total_contributions=$TOTAL_CONTRIBUTIONS" >> $GITHUB_OUTPUT
-          
-          # Generar badge JSON
-          echo "{
-            \"schemaVersion\": 1,
-            \"label\": \"Total Contributions\",
-            \"message\": \"$TOTAL_CONTRIBUTIONS\",
-            \"color\": \"brightgreen\",
-            \"style\": \"for-the-badge\"
-          }" > total-contributions-badge.json
+          TOTAL_COMMITS=$(node scraper.js)
+          echo "Commits: $TOTAL_COMMITS"
+          echo '{"schemaVersion": 1, "label": "Commits", "message": "'"$TOTAL_COMMITS"' total", "color": "blue"}' > commit-count-badge.json
 
-      - name: Upload badge artifact
+      - name: Upload badge
         uses: actions/upload-artifact@v4
         with:
-          name: contributions-badge
-          path: total-contributions-badge.json
+          name: commit-badge
+          path: commit-count-badge.json
 
       - name: Commit and push badge update
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git fetch origin
-          git pull origin main
-          git add total-contributions-badge.json
-          
-          # Solo hacer commit si hay cambios
-          if ! git diff --staged --quiet; then
-            git commit -m "🎯 Update total contributions badge: ${{ steps.contributions-badge.outputs.total_contributions }} contributions"
-            git push origin main
-          else
-            echo "No changes to commit"
-          fi
-
-      - name: Display summary
-        run: |
-          echo "### 📊 Resumen de Contribuciones" >> $GITHUB_STEP_SUMMARY
-          echo "- **Total de contribuciones:** ${{ steps.contributions-badge.outputs.total_contributions }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Badge actualizado:** total-contributions-badge.json" >> $GITHUB_STEP_SUMMARY
-          echo "- **Última actualización:** $(date)" >> $GITHUB_STEP_SUMMARY
+          git fetch
+          git pull
+          git status
+          git add commit-count-badge.json
+          git commit -m "Update commit badge"
+          git push
