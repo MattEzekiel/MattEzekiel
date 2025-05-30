@@ -1,20 +1,13 @@
-name: Count Total Contributions
+name: Count All Contributions
 
 on:
-  schedule:
-    - cron: '0 0 1 * *'  # Ejecuta el primer día de cada mes
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
-  count-contributions:
+  count_contributions:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Set up Node.js
@@ -23,141 +16,58 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install @octokit/rest
+        run: npm install axios
 
-      - name: Create contributions counter script
-        run: |
-          cat > count-contributions.js << 'EOF'
-          const { Octokit } = require('@octokit/rest');
-
-          async function getTotalContributions() {
-            const octokit = new Octokit({
-              auth: process.env.GITHUB_TOKEN
-            });
-
-            try {
-              // Obtener información del usuario autenticado
-              const { data: user } = await octokit.rest.users.getAuthenticated();
-              const username = user.login;
-              const accountCreationYear = new Date(user.created_at).getFullYear();
-              const currentYear = new Date().getFullYear();
-          
-              console.log(`Usuario: ${username}`);
-              console.log(`Cuenta creada en: ${accountCreationYear}`);
-          
-              let totalContributions = 0;
-              const yearlyContributions = {};
-
-              // Iterar por cada año desde la creación de la cuenta
-              for (let year = accountCreationYear; year <= currentYear; year++) {
-                const startDate = `${year}-01-01T00:00:00Z`;
-                const endDate = `${year}-12-31T23:59:59Z`;
-          
-                // Query GraphQL para obtener contribuciones del año específico
-                const query = `
-                  query($username: String!, $from: DateTime!, $to: DateTime!) {
-                    user(login: $username) {
-                      contributionsCollection(from: $from, to: $to) {
-                        totalCommitContributions
-#                        totalIssueContributions
-#                        totalPullRequestContributions
-#                        totalPullRequestReviewContributions
-#                        totalRepositoryContributions
-                      }
-                    }
-                  }
-                `;
-
-                try {
-                  const response = await octokit.graphql(query, {
-                    username: username,
-                    from: startDate,
-                    to: endDate
-                  });
-
-                  const contributions = response.user.contributionsCollection;
-                  const yearTotal = 
-                    contributions.totalCommitContributions
-#                    contributions.totalIssueContributions +
-#                    contributions.totalPullRequestContributions +
-#                    contributions.totalPullRequestReviewContributions +
-#                    contributions.totalRepositoryContributions;
-
-                  yearlyContributions[year] = yearTotal;
-                  totalContributions += yearTotal;
-
-                  console.log(`${year}: ${yearTotal} contribuciones`);
-
-                  // Pequeña pausa para evitar rate limiting
-                  await new Promise(resolve => setTimeout(resolve, 100));
-
-                } catch (error) {
-                  console.error(`Error obteniendo datos para ${year}:`, error.message);
-                }
-              }
-
-              console.log(`\nResumen por años:`);
-              Object.entries(yearlyContributions).forEach(([year, count]) => {
-                console.log(`${year}: ${count}`);
-              });
-
-              console.log(`\nTotal de contribuciones: ${totalContributions}`);
-              return totalContributions;
-
-            } catch (error) {
-              console.error('Error:', error.message);
-              return 0;
-            }
-          }
-
-          getTotalContributions().then(total => {
-            process.stdout.write(total.toString());
-          });
-          EOF
-
-      - name: Run contributions counter and generate badge
-        id: contributions-badge
+      - name: Count contributions by year
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: "tu-usuario" # Reemplazá con tu user de GitHub
         run: |
-          TOTAL_CONTRIBUTIONS=$(node count-contributions.js)
-          echo "Total contributions: $TOTAL_CONTRIBUTIONS"
-          echo "total_contributions=$TOTAL_CONTRIBUTIONS" >> $GITHUB_OUTPUT
+          node << 'EOF'
+          const axios = require('axios');
+
+          const token = process.env.GITHUB_TOKEN;
+          const username = process.env.GITHUB_USER;
+          const currentYear = new Date().getFullYear();
+
+          let total = 0;
+
+          const query = (from, to) => ({
+            query: `
+              query {
+                user(login: "${username}") {
+                  contributionsCollection(from: "${from}", to: "${to}") {
+                    contributionCalendar {
+                      totalContributions
+                    }
+                  }
+                }
+              }
+            `
+          });
+
+          const headers = {
+            Authorization: `bearer ${token}`
+          };
+
+          (async () => {
+            for (let year = 2008; year <= currentYear; year++) {
+              const from = `${year}-01-01T00:00:00Z`;
+              const to = `${year}-12-31T23:59:59Z`;
+
+              try {
+                const res = await axios.post('https://api.github.com/graphql', query(from, to), { headers });
+                const count = res.data.data.user.contributionsCollection.contributionCalendar.totalContributions;
           
-          # Generar badge JSON
-          echo "{
-            \"schemaVersion\": 1,
-            \"label\": \"Total Contributions\",
-            \"message\": \"$TOTAL_CONTRIBUTIONS\",
-            \"color\": \"brightgreen\",
-            \"style\": \"for-the-badge\"
-          }" > total-contributions-badge.json
+                if (count > 0) {
+                  console.log(`Año ${year}: ${count} contribuciones`);
+                  total += count;
+                }
+              } catch (error) {
+                console.error(`Error consultando ${year}:`, error.response?.data || error.message);
+              }
+            }
 
-      - name: Upload badge artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: contributions-badge
-          path: total-contributions-badge.json
-
-      - name: Commit and push badge update
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git fetch origin
-          git pull origin main
-          git add total-contributions-badge.json
-          
-          # Solo hacer commit si hay cambios
-          if ! git diff --staged --quiet; then
-            git commit -m "🎯 Update total contributions badge: ${{ steps.contributions-badge.outputs.total_contributions }} contributions"
-            git push origin main
-          else
-            echo "No changes to commit"
-          fi
-
-      - name: Display summary
-        run: |
-          echo "### 📊 Resumen de Contribuciones" >> $GITHUB_STEP_SUMMARY
-          echo "- **Total de contribuciones:** ${{ steps.contributions-badge.outputs.total_contributions }}" >> $GITHUB_STEP_SUMMARY
-          echo "- **Badge actualizado:** total-contributions-badge.json" >> $GITHUB_STEP_SUMMARY
-          echo "- **Última actualización:** $(date)" >> $GITHUB_STEP_SUMMARY
+            console.log(`🎉 Total de contribuciones desde el primer año con actividad: ${total}`);
+          })();
+          EOF
