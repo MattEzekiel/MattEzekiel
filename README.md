@@ -22,13 +22,6 @@
 
 - :telescope: as a Full Stack developer/engineer, my focus on create web applications are in performance, UX and SEO.
 
-## 📧 You can contact me on:
-
-<a href="mailto:matt.bubello@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"/></a>
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/matias-bubello/)
-
-_I am open to new opportunities/contributions._
-
 ## 🔎 You can find some of my work on:
 
 [![NPM - My NPM packages](https://img.shields.io/badge/NPM-My_NPM_packages-ea2039?style=for-the-badge&logo=NPM&logoColor=ea2039)](https://www.npmjs.com/~mattezekiel)
