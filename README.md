@@ -20,8 +20,6 @@
 
 <p>I am a Full Stack Developer from Argentina <img src="https://raw.githubusercontent.com/madebybowtie/FlagKit/master/Assets/PNG/AR%402x.png" alt="Argentina" width="21" height="15"> </p>
 
-- :telescope: as a Full Stack developer/engineer, my focus on create web applications are in performance, UX and SEO.
-
 ## 🔎 You can find some of my work on:
 
 [![NPM - My NPM packages](https://img.shields.io/badge/NPM-My_NPM_packages-ea2039?style=for-the-badge&logo=NPM&logoColor=ea2039)](https://www.npmjs.com/~mattezekiel)
