@@ -1,0 +1,92 @@
+name: Update Profile Badges
+
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  push:
+    branches: [ "main" ]
+    paths-ignore:
+      - '*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  badges:
+    runs-on: ubuntu-latest
+    env:
+      # GH_PAT (classic PAT with "repo" scope) is required to count private repos.
+      # Falls back to GITHUB_TOKEN, which only sees public data.
+      GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+      USERNAME: MattEzekiel
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Collect repository stats
+        run: |
+          gh api graphql --paginate -f query='
+            query($endCursor: String) {
+              user(login: "'"$USERNAME"'") {
+                repositories(first: 100, after: $endCursor, ownerAffiliations: OWNER) {
+                  pageInfo { hasNextPage endCursor }
+                  nodes {
+                    stargazerCount
+                    forkCount
+                    watchers { totalCount }
+                    issues(states: OPEN) { totalCount }
+                  }
+                }
+              }
+            }' --jq '.data.user.repositories.nodes[]' | jq -s '
+              {
+                stars:    (map(.stargazerCount) | add // 0),
+                forks:    (map(.forkCount) | add // 0),
+                watchers: (map(.watchers.totalCount) | add // 0),
+                issues:   (map(.issues.totalCount) | add // 0)
+              }' > stats.json
+          cat stats.json
+
+      - name: Count contributions per year
+        run: |
+          total=0
+          for year in $(seq 2019 $(date +%Y)); do
+            count=$(gh api graphql \
+              -f query='query($login: String!, $from: DateTime!, $to: DateTime!) {
+                user(login: $login) {
+                  contributionsCollection(from: $from, to: $to) {
+                    contributionCalendar { totalContributions }
+                  }
+                }
+              }' \
+              -f login="$USERNAME" \
+              -f from="${year}-01-01T00:00:00Z" \
+              -f to="${year}-12-31T23:59:59Z" \
+              --jq '.data.user.contributionsCollection.contributionCalendar.totalContributions')
+            echo "$year: $count"
+            total=$((total + count))
+          done
+          echo "TOTAL_COMMITS=$total" >> $GITHUB_ENV
+
+      - name: Generate badge files
+        run: |
+          badge() { echo '{"schemaVersion": 1, "label": "'"$1"'", "message": "'"$2"' total", "color": "'"$3"'"}' > "$4"; }
+          badge "Commits"     "$TOTAL_COMMITS"              "blue"   commit-count-badge.json
+          badge "stars"       "$(jq .stars    stats.json)"  "yellow" star-badge.json
+          badge "forks"       "$(jq .forks    stats.json)"  "green"  fork-badge.json
+          badge "watchers"    "$(jq .watchers stats.json)"  "orange" watcher-badge.json
+          badge "open issues" "$(jq .issues   stats.json)"  "red"    open-issues-badge.json
+          rm stats.json
+
+      - name: Commit and push badge updates
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add ./*.json
+          if git diff --cached --quiet; then
+            echo "No badge changes, nothing to commit."
+            exit 0
+          fi
+          git commit -m "Update profile badges [skip ci]"
+          git push

@@ -36,6 +36,8 @@
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="typescript">
   <img src="https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=white" alt="JSON">
   <img src="https://img.shields.io/badge/PHP-cornflowerblue?logo=php&logoColor=white&style=for-the-badge" alt="php">
+  <img src="https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white&style=for-the-badge" alt="C#">
+  <img src="https://img.shields.io/badge/SQL-CC2927?logo=microsoftsqlserver&logoColor=white&style=for-the-badge" alt="SQL">
   <img src="https://img.shields.io/badge/mysql-dodgerblue?logo=mySQL&logoColor=white&style=for-the-badge" alt="SQL">
 </div>
 
@@ -44,6 +46,11 @@
 
 ### 🧰 Frameworks / Libreries 🧰
 <div class="badges">
+  <img src="https://img.shields.io/badge/.NET%2010-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 10">
+  <img src="https://img.shields.io/badge/.NET%20MAUI-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET MAUI">
+  <img src="https://img.shields.io/badge/WPF-0C54C2?style=for-the-badge&logo=dotnet&logoColor=white" alt="WPF">
+  <img src="https://img.shields.io/badge/Blazor-512BD4?style=for-the-badge&logo=blazor&logoColor=white" alt="Blazor">
+  <img src="https://img.shields.io/badge/Entity%20Framework-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt="Entity Framework">
   <img src="https://img.shields.io/badge/-ReactJs-61DAFB?logo=react&logoColor=white&style=for-the-badge" alt="react"> 
   <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="next">
   <img src="https://img.shields.io/badge/laravel-orangered?logo=laravel&logoColor=white&style=for-the-badge" alt="laravel">
@@ -77,6 +84,7 @@
 
 ### 🔑 Database 🔑
 <div class="badges">
+  <img src="https://img.shields.io/badge/SQL%20Server-CC2927?style=for-the-badge&logo=microsoftsqlserver&logoColor=white" alt="SQL Server">
   <img src="https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white" alt="MariaDB">
   <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB">
   <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
